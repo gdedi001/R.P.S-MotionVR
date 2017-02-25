@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/gdedi001/LeapMotion---MangoHacks#readme",
   "dependencies": {
-    "aframe-leap-hands": "^0.7.0"
+    "aframe": "^0.5.0",
+    "aframe-leap-hands": "^0.7.0",
+    "aframe-physics-system": "^1.2.1"
   },
   "devDependencies": {
     "watchify": "^3.9.0"
