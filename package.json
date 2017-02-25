@@ -4,7 +4,7 @@
   "description": "MangoHacks '17 @ Florida International University: AFrame + LeapMotion = <3",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "watchify ./js/app.js -o ./js/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/gdedi001/LeapMotion---MangoHacks#readme",
   "dependencies": {
     "aframe-leap-hands": "^0.7.0"
+  },
+  "devDependencies": {
+    "watchify": "^3.9.0"
   }
 }
