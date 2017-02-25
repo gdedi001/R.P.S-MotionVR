@@ -1,3 +1,4 @@
+var physics = require('aframe-physics-system');
 var leapHands = require("aframe-leap-hands").registerAll();
 var Leap = require("leapjs");
 
@@ -19,6 +20,7 @@ function handStateFromHistory(hand, historySamples) {
   }
   return "not detected";
 }
+
 
 var controller = Leap.loop({ enableGestures: true }, function(frame) {
   if (frame.hands.length > 0) {
