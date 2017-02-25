@@ -1,0 +1,27 @@
+{
+  "name": "leapmango",
+  "version": "1.0.0",
+  "description": "MangoHacks '17 @ Florida International University: AFrame + LeapMotion = <3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdedi001/LeapMotion---MangoHacks.git"
+  },
+  "keywords": [
+    "aframe",
+    "leapMotion",
+    "leap-hands"
+  ],
+  "author": "Gabriel de Diego",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdedi001/LeapMotion---MangoHacks/issues"
+  },
+  "homepage": "https://github.com/gdedi001/LeapMotion---MangoHacks#readme",
+  "dependencies": {
+    "aframe-leap-hands": "^0.7.0"
+  }
+}

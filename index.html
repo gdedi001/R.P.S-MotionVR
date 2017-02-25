@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LeapMotion + AFrame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <!-- Production Version, Minified -->
+		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+		<script src="js/bundle.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Player -->
+      <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
+ 				<a-entity leap-hand="hand: left"></a-entity>
+  			<a-entity leap-hand="hand: right"></a-entity>
+			</a-entity>
+
+      <!-- Terrain -->
+      <a-grid></a-grid>
+
+      <!-- Lighting -->
+      <a-light type="ambient" color="#ccc"></a-light>
+      <a-light color="#ddf" distance="100" intensity="0.4" type="point"></a-light>
+      <a-light color="#ddf" position="3 10 -10" distance="50" intensity="0.4" type="point"></a-light>
+    </a-scene>
+
+  </body>
+</html>
