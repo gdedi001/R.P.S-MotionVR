@@ -1,3 +1,5 @@
+"use strict";
+var sky = require('aframe-sun-sky');
 var physics = require('aframe-physics-system');
 var leapHands = require("aframe-leap-hands").registerAll();
 var Leap = require("leapjs");
@@ -22,11 +24,24 @@ function handStateFromHistory(hand, historySamples) {
 }
 
 
+function getComputerChoice() {
+	var computerChoice = Math.random();
+	if (computerChoice < 0.34) 
+		computerChoice = "rock";
+	else if(computerChoice <= 0.67) 
+		computerChoice = "paper";
+	else
+			computerChoice = "scissors";
+}
+
 var controller = Leap.loop({ enableGestures: true }, function(frame) {
+	// check if hands are present in scene 
   if (frame.hands.length > 0) {
     var hand = frame.hands[0];
-		var box = document.querySelector("a-sky");
-    if (handStateFromHistory(hand, 10) === "closed") box.setAttribute('color', 'blue');
-		else box.setAttribute('color', 'pink'); 
+		var environment = document.querySelector("a-sky");
+    if (handStateFromHistory(hand, 10) === "closed") environment.setAttribute('color', 'blue');
+		else environment.setAttribute('color', 'pink'); 
+		
   }
+	console.log(getComputerChoice());
 });
