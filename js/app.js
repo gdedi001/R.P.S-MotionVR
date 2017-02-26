@@ -13,6 +13,36 @@ function getComputerChoice() {
   return computerChoice;
 }
 
+function compare(user, computer) {
+  if (user === computer) {
+    return "The result is a tie!";
+  }
+  if (user === "rock") {
+    if (computer === "scissors") {
+      return "rock wins";
+    } 
+		else {
+      return "paper wins";
+    }
+  }
+  if (user === "paper") {
+    if (computer === "rock") {
+      return "paper wins";
+    } 
+		else {
+      return "scissors wins";
+    }
+  }
+  if (user === "scissors") {
+    if (computer === "rock") {
+      return "rock wins";
+    } 
+		else {
+      return "scissors wins";
+    }
+  }
+}
+
 function numFingers(hand) {
   var extendedFingers = 0;
 
@@ -21,7 +51,7 @@ function numFingers(hand) {
     if (finger.extended) extendedFingers++;
   }
 
-  console.log("Extended fingers: " + extendedFingers);
+  // console.log("Extended fingers: " + extendedFingers);
   return extendedFingers;
 }
 
@@ -49,12 +79,8 @@ function handStateScissors(hand, handSamples) {
   var middleFinger = hand.middleFinger;
   var maxFingers = 2;
 
-  if (
-    indexFinger.extended &&
-    middleFinger.extended &&
-    numFingers(hand) === maxFingers
-  ) {
-    console.log("Scissors");
+  if ((indexFinger.extended && middleFinger.extended) && numFingers(hand) === maxFingers) {
+    return "scissors";
   }
 }
 
