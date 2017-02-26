@@ -1,36 +1,30 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var sky = require('aframe-sun-sky');
-var physics = require('aframe-physics-system');
+var sky = require("aframe-sun-sky");
+var physics = require("aframe-physics-system");
 var leapHands = require("aframe-leap-hands").registerAll();
 var Leap = require("leapjs");
 
-
 function getComputerChoice() {
-	var computerChoice = Math.random();
-	if (computerChoice < 0.34)
-		computerChoice = "rock";
-	else if(computerChoice <= 0.67)
-		computerChoice = "paper";
-	else
-		computerChoice = "scissors";
-	
-	return computerChoice;
-}
+  var computerChoice = Math.random();
+  if (computerChoice < 0.34) computerChoice = "rock";
+  else if (computerChoice <= 0.67) computerChoice = "paper";
+  else computerChoice = "scissors";
 
+  return computerChoice;
+}
 
 function numFingers(hand) {
-	var extendedFingers = 0;
-	
-	for(var f = 0; f < hand.fingers.length; f++){
-			var finger = hand.fingers[f];
-			if(finger.extended) extendedFingers++;
-	}
-	
-	console.log("Extended fingers: " + extendedFingers);
-	return extendedFingers;
-}
+  var extendedFingers = 0;
 
+  for (var f = 0; f < hand.fingers.length; f++) {
+    var finger = hand.fingers[f];
+    if (finger.extended) extendedFingers++;
+  }
+
+  console.log("Extended fingers: " + extendedFingers);
+  return extendedFingers;
+}
 
 function handStateFromHistory(hand, historySamples) {
   if (hand.grabStrength === 1)
@@ -51,37 +45,38 @@ function handStateFromHistory(hand, historySamples) {
   return "not detected";
 }
 
-
 function handStateScissors(hand, handSamples) {
-	var indexFinger = hand.indexFinger;
-	var middleFinger = hand.middleFinger;
-	var maxFingers = 2;
-	
-	if ((indexFinger.extended && middleFinger.extended) && numFingers(hand) === maxFingers) {
-		console.log('Scissors');
-	}
-}
+  var indexFinger = hand.indexFinger;
+  var middleFinger = hand.middleFinger;
+  var maxFingers = 2;
 
+  if (
+    indexFinger.extended &&
+    middleFinger.extended &&
+    numFingers(hand) === maxFingers
+  ) {
+    console.log("Scissors");
+  }
+}
 
 // Main frame loop for application
 var controller = Leap.loop({ enableGestures: true }, function(frame) {
-	// check if hands are present in scene 
+  // check if hands are present in scene
   if (frame.hands.length > 0) {
     var hand = frame.hands[0];
-//		var environment = document.querySelector("a-sky");
-//    if (handStateFromHistory(hand, 10) === "closed") environment.setAttribute('color', 'blue');
-//		else environment.setAttribute('color', 'pink'); 
-		//console.log(getComputerChoice());
-		console.log(handStateScissors(hand, 10));
-		
+  
+    //console.log(getComputerChoice());
+    console.log(handStateScissors(hand, 10));
   }
 });
 
 /*
-
-
+	Notes
+	-----
+	  var environment = document.querySelector("a-sky");
+    if (handStateFromHistory(hand, 10) === "closed") environment.setAttribute('color', 'blue');
+    else environment.setAttribute('color', 'pink');
 */
-
 
 },{"aframe-leap-hands":2,"aframe-physics-system":9,"aframe-sun-sky":20,"leapjs":92}],2:[function(require,module,exports){
 module.exports = {
