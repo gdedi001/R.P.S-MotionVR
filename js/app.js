@@ -5,6 +5,32 @@ var leapHands = require("aframe-leap-hands").registerAll();
 var Leap = require("leapjs");
 
 
+function getComputerChoice() {
+	var computerChoice = Math.random();
+	if (computerChoice < 0.34)
+		computerChoice = "rock";
+	else if(computerChoice <= 0.67)
+		computerChoice = "paper";
+	else
+		computerChoice = "scissors";
+	
+	return computerChoice;
+}
+
+
+function numFingers(hand) {
+	var extendedFingers = 0;
+	
+	for(var f = 0; f < hand.fingers.length; f++){
+			var finger = hand.fingers[f];
+			if(finger.extended) extendedFingers++;
+	}
+	
+	console.log("Extended fingers: " + extendedFingers);
+	return extendedFingers;
+}
+
+
 function handStateFromHistory(hand, historySamples) {
   if (hand.grabStrength === 1)
     return "rock";
@@ -24,30 +50,15 @@ function handStateFromHistory(hand, historySamples) {
   return "not detected";
 }
 
+
 function handStateScissors(hand, handSamples) {
 	var indexFinger = hand.indexFinger;
 	var middleFinger = hand.middleFinger;
+	var maxFingers = 2;
 	
-	if (indexFinger.extended && middleFinger.extended) {
+	if ((indexFinger.extended && middleFinger.extended) && numFingers(hand) === maxFingers) {
 		console.log('Scissors');
 	}
-}
-
-function numFingers(hand, handSamples) {
-	
-}
-
-
-function getComputerChoice() {
-	var computerChoice = Math.random();
-	if (computerChoice < 0.34)
-		computerChoice = "rock";
-	else if(computerChoice <= 0.67)
-		computerChoice = "paper";
-	else
-		computerChoice = "scissors";
-	
-	return computerChoice;
 }
 
 
